@@ -17,12 +17,12 @@ public class AmsRestApplication {
 	@Autowired
 	  RoleRepository roleRepository;
 	
-	@PostConstruct
+	/*@PostConstruct
 	private void initRole()  {
 		roleRepository.save(new Role(ERole.USER));
 		roleRepository.save(new Role(ERole.ADMIN));
 		roleRepository.save(new Role(ERole.SUPER_ADMIN));
-	}
+	}*/
 	public static String uploadDirectory =
 			System.getProperty("user.dir")+"/src/main/resources/static/uploads";
 	public static void main(String[] args) {

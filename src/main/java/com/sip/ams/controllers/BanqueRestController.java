@@ -40,14 +40,15 @@ public class BanqueRestController {
 	}*/
 	
 	@PostMapping
-	public Banque create(@RequestParam(name="logo") MultipartFile file,
+	public Banque create(@RequestParam("imageFile") MultipartFile imageFile,
 			@RequestParam("nom") String nom,
 			@RequestParam("adresse") String adresse, 
 			@RequestParam("capital") double capital
 			//@RequestParam("imageName") String imageName
 			) throws IOException
 	{
-		return banqueService.create(file,nom,adresse,capital);
+		//System.out.println("Hello");
+		return banqueService.create(imageFile,nom,adresse,capital);
 	}
 	
 	

@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.sip.ams.entities.Banque;
-import com.sip.ams.entities.Provider;
 import com.sip.ams.exceptions.ResourceNotFoundException;
 import com.sip.ams.repositories.BanqueRepository;
 

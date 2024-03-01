@@ -23,5 +23,12 @@ public class UserRestController {
 	public List<User> findAll() {
 		return (List<User>) userService.getAllUsers();
 	}
+	
+	@RequestMapping({ "/agents" })
+	@GetMapping
+	public List<User> findAllAgents() {
+		return (List<User>) userService.getAllAgents();
+	}
+
 
 }

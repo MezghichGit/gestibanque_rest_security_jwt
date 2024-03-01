@@ -22,9 +22,13 @@ public class AmsRestApplication {
 		roleRepository.save(new Role(ERole.USER));
 		roleRepository.save(new Role(ERole.ADMIN));
 		roleRepository.save(new Role(ERole.SUPER_ADMIN));
+		roleRepository.save(new Role(ERole.AGENT));
+		roleRepository.save(new Role(ERole.CLIENT));
 	}*/
 	public static String uploadDirectory =
 			System.getProperty("user.dir")+"/src/main/resources/static/uploads";
+	
+	
 	public static void main(String[] args) {
 		new File(uploadDirectory).mkdir();
 		//initRoles();

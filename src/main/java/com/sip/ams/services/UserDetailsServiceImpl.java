@@ -1,6 +1,8 @@
 package com.sip.ams.services;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,6 +11,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.sip.ams.entities.ERole;
+import com.sip.ams.entities.Role;
 import com.sip.ams.entities.User;
 import com.sip.ams.repositories.UserRepository;
 
@@ -25,10 +29,26 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 		return UserDetailsImpl.build(user);
 	}
-	
-	public List<User> getAllUsers()
-	{
-		return (List<User>)userRepository.findAll();
+
+	public List<User> getAllUsers() {
+		return (List<User>) userRepository.findAll();
 	}
-	
+
+	public List<User> getAllAgents() {
+		List<User> users = (List<User>) userRepository.findAll();
+		List<User> agents = new ArrayList<>();
+		for (User user : users) {
+
+			Set<Role> roles = user.getRoles();
+			for(Role role : roles)
+			{
+				if(role.getName().equals(ERole.AGENT))
+				{agents.add(user);}
+			}
+			
+		}
+
+		return agents;
+	}
+
 }

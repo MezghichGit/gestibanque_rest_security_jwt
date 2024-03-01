@@ -11,9 +11,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.sip.ams.entities.Banque;
 import com.sip.ams.entities.ERole;
 import com.sip.ams.entities.Role;
 import com.sip.ams.entities.User;
+import com.sip.ams.exceptions.ResourceNotFoundException;
 import com.sip.ams.repositories.UserRepository;
 
 @Service
@@ -49,6 +51,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		}
 
 		return agents;
+	}
+
+	public User delete(Long userId) {
+		return userRepository.findById(userId).map(user -> {
+			userRepository.delete(user);
+			return user;
+		}).orElseThrow(() -> new ResourceNotFoundException("User :  " +userId + " not found"));
 	}
 
 }

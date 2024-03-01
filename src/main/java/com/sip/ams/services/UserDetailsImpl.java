@@ -20,19 +20,49 @@ public class UserDetailsImpl implements UserDetails {
   private String username;
 
   private String email;
+  private String nom;
+  private String prenom;
+  private String telephone;
 
-  @JsonIgnore
+  public String getNom() {
+	return nom;
+}
+
+public void setNom(String nom) {
+	this.nom = nom;
+}
+
+public String getPrenom() {
+	return prenom;
+}
+
+public void setPrenom(String prenom) {
+	this.prenom = prenom;
+}
+
+public String getTelephone() {
+	return telephone;
+}
+
+public void setTelephone(String telephone) {
+	this.telephone = telephone;
+}
+
+@JsonIgnore
   private String password;
 
   private Collection<? extends GrantedAuthority> authorities;
 
   public UserDetailsImpl(Long id, String username, String email, String password,
-      Collection<? extends GrantedAuthority> authorities) {
+      Collection<? extends GrantedAuthority> authorities, String nom, String prenom, String telephone) {
     this.id = id;
     this.username = username;
     this.email = email;
     this.password = password;
     this.authorities = authorities;
+    this.nom = nom;
+    this.prenom = prenom;
+    this.telephone = telephone;
   }
 
   public static UserDetailsImpl build(User user) {
@@ -45,7 +75,11 @@ public class UserDetailsImpl implements UserDetails {
         user.getUsername(), 
         user.getEmail(),
         user.getPassword(), 
-        authorities);
+        authorities,
+        user.getNom(),
+        user.getPrenom(),
+        user.getTelephone()
+        );
   }
 
   @Override

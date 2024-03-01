@@ -1,5 +1,6 @@
 package com.sip.ams.controllers;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -74,6 +75,15 @@ public class AuthController {
                encoder.encode(signUpRequest.getPassword()));
 
     Set<String> strRoles = signUpRequest.getRole();  // Ce qu'on récupère du Request
+    // Récupération du reste des champs
+    String nom = signUpRequest.getNom();
+    String prenom = signUpRequest.getPrenom();
+    String matricule = signUpRequest.getMatricule();
+    String telephone = signUpRequest.getTelephone();
+    String photo = signUpRequest.getPhoto();
+    
+    
+    //
     
     Set<Role> roles = new HashSet<>(); // ce qu'on doit créer et sauvegarder dans la base pour chaque User
 
@@ -117,6 +127,12 @@ public class AuthController {
     }
 
     user.setRoles(roles);
+    user.setNom(nom);
+    user.setPrenom(prenom);
+    user.setTelephone(telephone);
+    user.setMatricule(matricule);
+    user.setPhoto(photo);
+    user.setDateCreation(LocalDate.now());
     userRepository.save(user);
 
     return ResponseEntity.ok(new MessageResponse("Inscription avec succès!"));

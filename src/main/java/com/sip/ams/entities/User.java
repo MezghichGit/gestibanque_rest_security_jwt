@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 
 import java.util.Set;
-
+import java.time.LocalDate;
 import java.util.HashSet;
 
 import jakarta.validation.constraints.NotBlank;
@@ -26,6 +26,62 @@ public class User {
 	@Size(max = 50)
 	@Email
 	private String email;
+
+
+	private String nom;
+	private String prenom;
+	private String telephone;
+	private String matricule;
+	private LocalDate dateCreation;
+	private String photo;
+	
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+	public String getTelephone() {
+		return telephone;
+	}
+
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
+	}
+
+	public String getMatricule() {
+		return matricule;
+	}
+
+	public void setMatricule(String matricule) {
+		this.matricule = matricule;
+	}
+
+	public LocalDate getDateCreation() {
+		return dateCreation;
+	}
+
+	public void setDateCreation(LocalDate dateCreation) {
+		this.dateCreation = dateCreation;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
 
 	@NotBlank
 	@Size(max = 120)
@@ -83,4 +139,21 @@ public class User {
 		this.email = email;
 		this.password = password;
 	}
+
+	public User( @NotBlank @Size(max = 60) String username, @NotBlank @Size(max = 50) @Email String email,
+			String nom, String prenom, String telephone, String matricule, LocalDate dateCreation, String photo,
+			@NotBlank @Size(max = 120) String password, Set<Role> roles) {
+		this.username = username;
+		this.email = email;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.telephone = telephone;
+		this.matricule = matricule;
+		this.dateCreation = dateCreation;
+		this.photo = photo;
+		this.password = password;
+		this.roles = roles;
+	}
+	
+	
 }
